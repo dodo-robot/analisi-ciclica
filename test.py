@@ -5,7 +5,16 @@ import plotly.graph_objs as go
 
 from calcolo_cicli_inverso import CicliAnalisiDinamicaInversa
 
-dataframe = pd.read_csv("BTC-USD.csv")
+# Assuming your JSON file is named "data.json"
+with open('BTC_USDT_USDT-1d-futures.json') as f:
+    data = pd.read_json(f, orient="records")
+
+# Convert the array of arrays into a DataFrame
+dataframe = pd.DataFrame(data=data)
+dataframe.columns=['Date','Open','High','Low','Close','Volume']
+#df = pd.DataFrame(data)
+print(dataframe)
+
 
 regole_tabella_day = [
     (7, "quadriennale", [768, 1024, 1344]),
